@@ -7,8 +7,8 @@ const Footer = () => {
 		<div className="lg:w-1/3">
         <div className="flex items-center space-x-2">
         <Link to="/" className="text-black text-2xl font-bold">
-          <span className="rounded-full bg-blue-500 p-2 text-white">f</span>
-          Furni<span className="text-blue-500">flex</span>
+          <span className="rounded-full bg-blue-500 p-2 text-white">t</span>
+          Tech<span className="text-blue-500">take</span>
         </Link>
       </div>
 		</div>
