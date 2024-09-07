@@ -21,7 +21,7 @@ const AuthForm = ({ isLogin }) => {
     try {
       // Send login/register request to backend
       const response = await axios.post(
-        `http://localhost:5000/api/auth/${isLogin ? 'login' : 'register'}`,
+        `https://ecom-backend-37eabr56l-souravmahmud32s-projects.vercel.app/api/auth/${isLogin ? 'login' : 'register'}`,
         formData
       );
 

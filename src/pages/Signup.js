@@ -4,7 +4,7 @@ import { FaGoogle } from 'react-icons/fa';
 
 const Signup = () => {
   const handleGoogleSignup = () => {
-    window.location.href = 'http://localhost:5000/api/auth/google'; // Redirect to Google login route
+    window.location.href = 'https://ecom-backend-kappa-green.vercel.app/api/auth/google'; // Redirect to Google login route
   };
   return (
     <div className=" text-center max-w-md mx-auto">

@@ -22,7 +22,7 @@ const Login = () => {
   }, [login, navigate]);
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5000/api/auth/google'; // Redirect to Google login route
+    window.location.href = 'https://ecom-backend-kappa-green.vercel.app/api/auth/google'; // Redirect to Google login route
   };
 
   return (
