@@ -1,16 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
-  const { cartItems, removeFromCart, updateCartQuantity } = useContext(CartContext);
+  const { cartItems, removeFromCart, updateCartQuantity, clearCart } = useContext(CartContext);
+  const [orderSuccessful, setOrderSuccessful] = useState(false);
 
   const handleQuantityChange = (productId, quantity) => {
-    updateCartQuantity(productId, quantity); // Update quantity using context function
+    updateCartQuantity(productId, quantity);
+  };
+
+  const handleOrder = () => {
+    // Show toast notification
+    toast.success('Order Successful!');
+
+    // Clear cart items and reset cart count
+    clearCart();
+
+    // Set state to show order confirmation message
+    setOrderSuccessful(true);
   };
 
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+
+      {orderSuccessful && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+          <p>Order Successful!</p>
+        </div>
+      )}
 
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
@@ -50,7 +70,10 @@ const Cart = () => {
               >
                 Remove
               </button>
+
+              {/* Order Button */}
               <button
+                onClick={handleOrder}
                 className="bg-green-500 text-white px-4 py-2 ml-2 rounded"
               >
                 Order
@@ -59,6 +82,9 @@ const Cart = () => {
           ))}
         </div>
       )}
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };
