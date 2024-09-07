@@ -11,10 +11,11 @@ const ProductList = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {productList.map((product) => (
           <div key={product.id} className="bg-white rounded-lg shadow-lg p-5">
+            {/* Show full product image */}
             <img
               src={product.images[0]?.image}
               alt={product.name}
-              className="h-48 w-full object-cover rounded-md"
+              className="h-48 w-full object-contain rounded-md" 
             />
             <h3 className="mt-4 text-xl font-semibold">{product.name}</h3>
             <p className="mt-2 text-gray-600">{product.description.substring(0, 50)}...</p>
@@ -32,4 +33,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-

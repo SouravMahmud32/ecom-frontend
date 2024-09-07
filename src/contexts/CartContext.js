@@ -1,32 +1,32 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (product) => {
+  // Add product to cart with the specified quantity
+  const addToCart = (product, quantity) => {
     setCartItems((prevItems) => {
       const itemExists = prevItems.find((item) => item.id === product.id);
 
       if (itemExists) {
-        // If product is already in the cart, increment the quantity
+        // product already exists, update the quantity
         return prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity } //  existing quantity
             : item
         );
       }
 
-      // If product is not in the cart, add it with quantity 1
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, quantity }];
     });
   };
 
-  // ** Function to update the quantity of an item **
+  // update the quantity of an item in the cart
   const updateCartQuantity = (productId, quantity) => {
     if (quantity <= 0) {
-      removeFromCart(productId); // Remove item if quantity is 0 or less
+      removeFromCart(productId); 
     } else {
       setCartItems(
         cartItems.map((item) =>
@@ -40,8 +40,12 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
   };
 
+  const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const totalCartPrice = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartQuantity }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartQuantity, totalItemsInCart, totalCartPrice }}>
       {children}
     </CartContext.Provider>
   );
