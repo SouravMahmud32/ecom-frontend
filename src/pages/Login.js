@@ -3,7 +3,6 @@ import AuthForm from '../components/AuthForm';
 import { FaGoogle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import axios from 'axios';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
